@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<html class="no-js" lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+
+
+  <title>Preparacion de un entorno de desarrollo java</title>
+  <meta property="og:title" content="Preparacion de un entorno de desarrollo java" />
+
+
+
+
+
+
+<link rel="canonical" href="uqbar-project.github.io/wiki/articles/preparacion-de-un-entorno-de-desarrollo-java.html" />
+<meta property="og:url" content="uqbar-project.github.io/wiki/articles/preparacion-de-un-entorno-de-desarrollo-java.html" />
+<meta property="og:site_name" content="uqbar-wiki" />
+<meta name="application-name" content="uqbar-wiki"/>
+
+<meta property="og:updated_time" content=" 2017-02-09T11:53:29-03:00" />
+
+
+
+
+
+
+  <meta property="keywords" content="" />
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/wiki/favicon.ico" >
+    <link type="text/plain" rel="author" href="/wiki/humans.txt"/>
+
+    <link rel="stylesheet" href="/wiki/assets/app-ce8dd519ee762abf28c16f11faacee90.css">
+    <style>
+        .navbar {
+            -webkit-backface-visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <div id="pagetitle"><a href="/wiki/">uqbar-wiki</a></div>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <div class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class="has-dropdown">
+                <a href="#">Help</a>
+                <ul class="dropdown">
+                    <li><a class="link article_link" href="/wiki/wiki/articles/Frequently-Asked-Questions.html">Frequently Asked Questions</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/como-empezar.html">como-empezar</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li class="has-dropdown">
+                <a href="#">Navigation</a>
+                <ul class="dropdown">
+                    <li><a class="link article_link" href="/wiki/wiki/articles/paradigma-de-programacion.html">paradigma de programacion</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/design-temario.html">design temario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/tecnicas-avanzadas-de-programacion.html">tecnicas avanzadas de programacion</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/programacion-de-interfaces-de-usuario.html">programacion de interfaces de usuario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/algo3-temario.html">algo3 temario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/programacion-con-herramientas-modernas.html">programacion con herramientas modernas</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+<div class="column small-0 medium-2 large-2 sidebar" style="margin-top: 10px;">
+    <div class="rows">
+        <img src="/wiki/img/uqbar_logo.png">
+    </div>
+
+    <ul class="rows small-12 medium-10 large-10 side-nav stack button-group" title="Link List" role="menu">
+        <li class="button" role="menuitem"><a href="/wiki/">Home</a></li>
+        <li class="button" role="menuitem"><a href="/wiki/articles">Lista de articulos</a></li>
+    </ul>
+</div>
+
+<div class="column small-12 medium-10 large-10">
+    <div id="article_title">
+    <h1>
+        Preparacion de un entorno de desarrollo java
+    </h1>
+</div>
+
+<div id="article_content">
+    <div style="float:right">
+\_\_TOC\_\_
+
+</div>
+<p>Para realizar aplicaciones de complejidad mediana-grande en Java, es recomendable contar con un entorno de trabajo que contemple al menos:</p>
+
+<ul>
+  <li>Una herramienta de versionado de fuentes</li>
+  <li>Una herramienta de manejo de dependencias</li>
+  <li>Un mecanismo para automatizar los procesos administrativos del desarrollo (test, release, deploy, etc)</li>
+  <li>Un entorno de programación que permita:
+    <ul>
+      <li>Ayudas a la detección temprana de errores, autocompleción, herramientas para navegar y buscar ágilmente dentro del código, etc.</li>
+      <li>Soporte para la realización de refactors automatizados</li>
+      <li>Integración con la mayor cantidad posible de las demás herramientas que utilizamos.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>En este artículo se propone una configuración de entorno de trabajo que intenta cumplir con los anteriores objetivos. Las herramientas seleccionadas para eso son:</p>
+
+<ul>
+  <li><strong>Java Development Kit</strong></li>
+  <li><strong>Eclipse</strong> como entorno integrado de desarrollo</li>
+  <li><strong>Svn</strong> como repositorio de fuentes y herramienta de versionado</li>
+  <li><strong>Maven</strong> como herramienta para manejar dependencias y automatizar diversos procesos administrativos.</li>
+</ul>
+
+<p>Adicionalmente se instalarán extensiones al entorno de desarrollo eclipse para integrarlo con svn y maven.</p>
+
+<h2 id="jdk-java-development-kit">JDK (Java Development Kit)</h2>
+
+<p>Contiene un compilador y una máquina virtual (el runtime) que traduce a código de máquina el código intermedio que genera el compilador (.java → COMPILADOR (javac.exe) → .class → VM (java.exe) → ejecutable final).</p>
+
+<p>Al tiempo de escribir este artículo la última versión estable es 1.7. Para el propósito aquí descripto es recomendable instalar la <em>Standard Edition</em>.</p>
+
+<h3 id="download-e-instalación-base">Download e instalación base</h3>
+
+<p>A continuación se detallan los pasos básicos de instalación según el sistema operativo que se esté utilizando. Luego de realizar este paso inicial se deberá pasar a la configuración del entorno.</p>
+
+<p>Este es el link de <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">downloads</a>.</p>
+
+<p>Desde ahí buscan el Latest Release y se descargan el JDK del sistema operativo que esté instalado en sus máquinas.</p>
+
+<p>Para más detalles adicionales a los que se encuentran en esta página, se puede consultar el <a href="http://java.sun.com/javase/6/webnotes/install/index.html">manual de instalación de sun</a>.</p>
+
+<h5 id="ubuntu">Ubuntu</h5>
+
+<p>Para instalarlo en Ubuntu se puede hacer:</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install default-jdk</code></p>
+
+<p>Eso instalará el jdk default (para Ubuntu es <em>OpenJDK de la versión que se bajaron</em>), si se desea instalar en cambio el JDK de Sun se puede hacer:</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install sun-java6-jdk sun-java6-jre</code></p>
+
+<h5 id="otros-sistemas-operativos">Otros sistemas operativos</h5>
+
+<p>Para otros sistemas operativos se puede bajar el instalable de: <a href="http://java.sun.com/javase/downloads/">http://java.sun.com/javase/downloads/</a> .</p>
+
+<p><a href="http://www.it.uc3m.es/tlp/guia/guiaWinXP.html">Este tutorial</a> indica cómo instalarlo en Windows XP (en especial pasos 1 a 3).</p>
+
+<h3 id="documentación">Documentación</h3>
+
+<ul>
+  <li><a href="http://java.sun.com/docs/books/tutorial/">Java Tutorials</a></li>
+  <li><a href="http://java.sun.com/j2se/1.4.2/docs/tooldocs/windows/javadoc.html">Javadoc reference guide</a></li>
+  <li><a href="http://java.sun.com/j2se/javadoc/writingdoccomments/index.html">Writing comment tips</a></li>
+</ul>
+
+<h2 id="eclipse">Eclipse</h2>
+
+<p>La instalación del eclipse es muy sencilla: hay que bajar el que corresponda a su sistema operativo desde <a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a> y descomprimirlo en su disco rígido. Posiblemente deseen crear un acceso directo para apuntar al ejecutable. Otra opción en Ubuntu es</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install eclipse-platform</code></p>
+
+<p>A los efectos de los objetivos planteados en este artículo, se recomienda elegir la versión denominada “Eclipse IDE for Java EE Developers”.</p>
+
+<p>Esa versión pesa bastante. Si no van a utilizar las herramientas de programación web es posible utilizar la versión más liviana “Eclipse IDE for Java Developers”.</p>
+
+<h3 id="configuraciones-adicionales">Configuraciones adicionales</h3>
+
+<p>Para no tener problemas con los tildes y demás caracteres especiales al bajarse los ejemplos conviene tener sincronizado el mismo encoding. Para eso, desde la barra de menú: Window &gt; Preferences, filtrar por “encoding” y cambiar todos a “UTF-8” o “ISO 10646/Unicode(UTF-8)”. Por ejemplo: En General &gt; Workspace &gt; Text file encoding, seleccionar Other &gt; UTF-8. Aplicar cambios.</p>
+
+<p>Filtrar en el menú por la palabra “spell” y desactivar la corrección ortográfica (Spelling &gt; desactivar el check Enable spell checking). Aplicar cambios.</p>
+
+<p>También conviene desactivar el warning default de clases serializables que no definan un identificador de versión: Window &gt; Preferences, filtrar por “Serializable”, solapa Java / Compiler / “Errors/Warnings”, “Potential programming problems”, y se setea el valor de “Serializable class without serialVersionUID” a Ignore. Aplicar cambios.</p>
+
+<h3 id="documentación-1">Documentación</h3>
+
+<ul>
+  <li><a href="http://www.eclipse.org/">Página principal de Eclipse</a></li>
+</ul>
+
+<h2 id="svn">Svn</h2>
+
+<p>Pueden instalar el plugin de svn para eclipse basándose en <a href="http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA">este tutorial</a>.</p>
+
+<h2 id="maven">Maven</h2>
+
+<h3 id="instalación-default">Instalación default</h3>
+
+<p>Pueden seguir <a href="http://maven.apache.org/download.cgi#Installation">estas instrucciones</a></p>
+
+<h3 id="instalación-en-so-unix-based-linux-solaris-and-mac-os-x">Instalación en SO Unix-based (Linux, Solaris and Mac OS X)</h3>
+
+<p>Descargar Apache Maven 3 desde <a href="http://apache.dattatec.com/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz">este link</a>.</p>
+
+<p>Descomprimir el tarball y mover el directorio a donde usualmente se guardan los programas. Ejemplo: <em>/home/john/programs/</em>.</p>
+
+<p><code class="highlighter-rouge">$ tar -xzvf apache-maven-3.0.4-bin.tar.gz</code>
+<code class="highlighter-rouge">$ mv apache-maven-3.0.4 /home/john/programs/</code></p>
+
+<p>Agregar la siguiente línea al archivo <strong>.bashrc</strong>. Este archivo oculto (su nombre empieza con ‘.’) contiene comandos que se ejecutan cuando se abre una terminal (consola). Se puede abrir con cualquier editor de textos (Gedit, vim, Emacs, Notepad++, etc) y se encuentra en el directorio <strong>home</strong> del usuario.</p>
+
+<p><code class="highlighter-rouge">export PATH=$PATH:$HOME/programs/apache-maven-3.0.4/bin</code></p>
+
+<p>Una forma sencilla de hacer ésto (sin tener que abrir un editor) es usando el programa <strong>echo</strong> y <em>appendeando</em> (redireccionando y agregando al final) el output al archivo. <strong>Prestar atención al hecho de que se usan dos signos mayor</strong>:</p>
+
+<p><code class="highlighter-rouge">$ echo 'export PATH=$PATH:$HOME/programs/apache-maven-3.0.4/bin' &gt;&gt; .bashrc</code></p>
+
+<p>Corroboramos que podemos usar Maven. El output sería algo parecido a ésto:</p>
+
+<p><code class="highlighter-rouge">john@notebook:~$ mvn -v</code>
+<code class="highlighter-rouge">Apache Maven 3.0.4 (r1232337; 2012-01-17 05:44:56-0300)</code>
+<code class="highlighter-rouge">Maven home: /home/john/programs/apache-maven-3.0.4</code>
+<code class="highlighter-rouge">Java version: 1.6.0_26, vendor: Sun Microsystems Inc.</code>
+<code class="highlighter-rouge">Java home: /usr/lib/jvm/java-6-sun-1.6.0.26/jre</code>
+<code class="highlighter-rouge">Default locale: en_US, platform encoding: UTF-8</code>
+<code class="highlighter-rouge">OS name: "linux", version: "3.0.0-19-generic", arch: "i386", family: "unix"</code></p>
+
+<h4 id="usé-un-sólo--y-se-me-borró-todo-el-bashrc-ahora-qué-hago">¡Usé un sólo ‘&gt;’ y se me borró todo el .bashrc! ¿Ahora qué hago?</h4>
+
+<ol>
+  <li>
+    <p>Don’t panic</p>
+  </li>
+  <li>
+    <p>Cuando editamos los archivos, Linux guarda una copia oculta del estado anterior del mismo. Simplemente, restauramos esa versión:</p>
+  </li>
+</ol>
+
+<p><code class="highlighter-rouge">$ cp .bashrc~ .bashrc</code></p>
+
+<h3 id="configuración-de-maven">Configuración de Maven</h3>
+
+<p>A la configuración original de Maven debemos indicarle cuáles son los repositorios de donde bajar los artefactos de Arena. Para poder realizar esto es necesario crear el archivo ~/.m2/settings.xml. Este archivo se encuentra en el directorio del usuario, esta ruta cambia dependiendo de cada sistema operativo. Por ejemplo en Linux, si el usuario es pablo, la ruta sería /home/pablo/.m2/settings.xml. Si trabajan con Windows, instalado en el drive C: y el nombre del usuario es Fernando, el directorio será C:\Users\Fernando\.m2\settings.xml</p>
+
+<p>El contenido de este archivo debería quedar así:</p>
+
+<p><code class="highlighter-rouge"> </code><settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0         http://maven.apache.org/xsd/settings-1.0.0.xsd">
+`  `<profiles>
+`        `<profile>
+`              `<id>`uqbar-wiki`</id>
+`              `<repositories>
+`                    `<repository>
+`                        `<id>`uqbar-wiki.org-releases`</id>
+`                        `<name>`uqbar-wiki.org-releases`</name>
+`                        `<url>[`http://uqbar-wiki.org/mvn/releases`](http://uqbar-wiki.org/mvn/releases)</url>
+`                    `</repository>
+`                    `<repository>
+`                        `<snapshots></snapshots>
+`                        `<id>`uqbar-wiki.org-snapshots`</id>
+`                        `<name>`uqbar-wiki.org-snapshots`</name>
+`                        `<url>[`http://uqbar-wiki.org/mvn/snapshots`](http://uqbar-wiki.org/mvn/snapshots)</url>
+`                   `</repository>
+`              `</repositories>
+`        `</profile>
+`  `</profiles>
+`  `<activeProfiles>
+`       `<activeProfile>`uqbar-wiki`</activeProfile>
+`  `</activeProfiles>
+` `</settings></p>
+
+<h3 id="plugin-para-eclipse">Plugin para Eclipse</h3>
+
+<p>Desde la versión 4.2 (Juno) Eclipse incluyó el plugin m2e como parte de la instalación. Por lo cual no hace falta instalarlo.</p>
+
+<p>Si por algún motivo estuvieras usando una versión anterior, se puede instalar de la siguiente manera:</p>
+
+<ul>
+  <li><em>Help</em> -&gt; <em>Install new software..</em></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><em>Add..</em></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>En <em>Location</em> pegar la siguiente url: <a href="http://download.eclipse.org/technology/m2e/releases">http://download.eclipse.org/technology/m2e/releases</a> y click en <em>Ok</em></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Se cargará el paquete <strong>Maven Integration for Eclipse</strong> en el recuadro blanco del centro. Seleccionarlo y hacer click en Next -&gt; Next -&gt; … -&gt; Finish</li>
+</ul>
+
+<h3 id="propiedades-de-maven-en-eclipse">Propiedades de Maven en Eclipse</h3>
+
+<p>Window &gt; Preferences te permite configurar algunas propiedades para Maven. Te recomendamos</p>
+
+<ul>
+  <li>tener chequeado “Do not automatically update dependencies from remote repositories” para que no intente bajarte permanentemente nuevas versiones de los componentes que utilices. Esto requiere que lo hagas en forma manual, algo que quizás sea más recomendable.</li>
+  <li>tener chequeado “Download artifact sources” te permite ver el código fuente de los .jars que te bajes, esta opción hace que las descargas inicialmente tarden un poco más de tiempo pero es bueno cuando tenés algún error y necesitás entender cómo funciona alguna parte de un componente.</li>
+  <li>también es bueno chequear “Download artifact javadocs” para obtener documentación de los componentes que utilizamos</li>
+  <li>Y por último tener deschequeada la opción “Update Maven projects on startup” permite que manualmente vos actualices los proyectos solamente ante un cambio y no cuando levantes el Eclipse.</li>
+</ul>
+
+<p>Una configuración más que puede ser útil para encontrar versiones nuevas de artefactos en los repositorios es dejar chequeada:</p>
+
+<ul>
+  <li>La opción “Download repository index on startup” (opción por defecto chequeada): para más información pueden leer <a href="http://stackoverflow.com/questions/8647769/what-is-eclipse-doing-when-it-says-that-its-updating-indexes">http://stackoverflow.com/questions/8647769/what-is-eclipse-doing-when-it-says-that-its-updating-indexes</a>.</li>
+</ul>
+
+<h3 id="creación-de-un-proyecto-básico">Creación de un proyecto básico</h3>
+
+<p>Una vez instaladas todas las herramientas, se puede crear un proyecto en esta plataforma siguiendo <a href="creacion-de-un-proyecto-maven-basico.html">este tutorial</a> (ojo, este es un tutorial básico, si necesitan usar otras tecnologías de presentación busquen los tutoriales en las páginas de las tecnologías correspondientes).</p>
+
+<h3 id="mavenizar-un-proyecto-existente">Mavenizar un proyecto existente</h3>
+
+<p>Si ya arrancaste tu proyecto y decidiste más tarde que necesitabas usar Maven, podés <em>mavenizarlo</em> de alguna de las siguientes maneras.</p>
+
+<h4 id="usando-m2eclipse">Usando M2Eclipse</h4>
+
+<ul>
+  <li>Click derecho en el Proyecto</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><em>Configure</em> -&gt; <em>Convert to Maven Project</em></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Ingresar el <strong>groupId deseado</strong>. Preferentemente que sea el package name que se hayan definido antes, ej: <em>org.uqbar.arena.exampes</em></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><em>Finish</em></li>
+</ul>
+
+<p>Independientemente de si su proyecto respeta la estructura estándar de un proyecto Maven, lo van a tener configurado y funcionando. De hecho, si crean los directorios y mueven el paquete a src/main/java, Maven automágicamente lo va a detectar.</p>
+
+<p><code class="highlighter-rouge">.</code>
+<code class="highlighter-rouge">├── src</code>
+<code class="highlighter-rouge">│   └── main</code>
+<code class="highlighter-rouge">│       ├── java</code>
+<code class="highlighter-rouge">│       │   └── org</code>
+<code class="highlighter-rouge">│       │       └── uqbar</code>
+<code class="highlighter-rouge">│       │           └── arena</code>
+<code class="highlighter-rouge">│       │               └── examples</code>
+<code class="highlighter-rouge">│       │                    └── Main.java</code>
+<code class="highlighter-rouge">│       └── resources</code>
+<code class="highlighter-rouge">├── pom.xml</code></p>
+
+<h4 id="a-manopla">A manopla</h4>
+
+<ul>
+  <li>Creamos un proyecto Maven.</li>
+</ul>
+
+<p><code class="highlighter-rouge">$ mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DgroupId=org.uqbar.arena.examples -DartifactId=Example</code></p>
+
+<p>A todas las opciones que nos pregunte le damos enter para aceptar las default.</p>
+
+<ul>
+  <li>Copiamos nuestro código al directorio generado para el groupId. En el ejemplo: src/main/java/ar/edu/frba/utn/dds.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Probamos hacer una compilación e instalación local.</li>
+</ul>
+
+<p><code class="highlighter-rouge">$ mvn install</code></p>
+
+<h2 id="links-útiles">Links útiles</h2>
+
+<ul>
+  <li><a href="amigandonos-con-el-entorno-de-desarrollo.html">Amigandonos con el entorno de desarrollo</a></li>
+</ul>
+
+
+</div>
+
+<div id="article_metadata">
+    <p>Latest update on February 02, 2017 by
+        Ernesto Bossi</p>
+
+    <ul class="accordion" data-accordion>
+        <li class="accordion-navigation">
+            <a href="#panel1a">Page History, Meta information</a>
+
+            <div id="panel1a" class="content">
+
+                <div class="rows">
+                    <div class="column small-12 medium-6 large-6">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Page Commits</th>
+                                <th>Page Additions</th>
+                                <th>Page Deletions</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>262</td>
+                                <td>0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="column small-12 medium-6 large-6">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Commits</th>
+                            <tr>
+                            </thead>
+
+                            <tbody>
+                            
+                            <tr>
+                                <td>Ernesto Bossi</td>
+                                <td>bossi.e...</td>
+                                <td>1</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Npasserini</td>
+                                <td>Npasser...</td>
+                                <td>1</td>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <table style="margin-left: 15px;">
+                    <thead>
+                    <tr>
+                        <th>Hash</th>
+                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Mail</th>
+                        <th>Subject</th>
+                    <tr>
+                    </thead>
+
+                    <tbody>
+                    
+                    <tr>
+                        <td>bef5aba</td>
+                        <td>Thu Feb 2 19:24:04 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>build up initial migration with old commits</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>299a477</td>
+                        <td>Thu Feb 2 19:14:20 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>/* ¿Por qué entonces dice unexpected `;', si yo no puse ningún ";"? */</td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+
+</div>
+
+
+<div id="footer">
+    <div class="columns small-1 medium-2 large-3">
+        <small>(C) 2015-17 Matthias Beyer/Ernesto Bossi</small>
+    </div>
+
+    <div class="columns small-11 medium-10 large-9">
+    </div>
+
+</div>
+
+<script>
+    'use strict';
+</script>
+
+<script src="/wiki/assets/jquery-9954088f87089c387789507249fa70d3.js"></script>
+<script src="/wiki/assets/jquery.min-650c8b3af3d010ec559014c6e70b13c3.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="/wiki/assets/foundation/foundation-8e0f071884576348dba555b27a4bcaa9.js"></script>
+<script src="/wiki/assets/foundation/foundation.abide-fa5ce9fbf8301ae49154ebc752edc220.js"></script>
+<script src="/wiki/assets/foundation/foundation.accordion-bcc423fb0c2a3d515ba85ff591171a8e.js"></script>
+<script src="/wiki/assets/foundation/foundation.alert-609b779b55610f4916250faaa37d1cfc.js"></script>
+<script src="/wiki/assets/foundation/foundation.clearing-167db0285c7a789f7f216183f9038ac4.js"></script>
+<script src="/wiki/assets/foundation/foundation.dropdown-25aac997ca0ca5dc3c3094c266c8f5aa.js"></script>
+<script src="/wiki/assets/foundation/foundation.equalizer-cbdd8079a6f777c37dd1314f9b17faec.js"></script>
+<script src="/wiki/assets/foundation/foundation.interchange-6ef75863aff8abeff4de79554b62e1b9.js"></script>
+<script src="/wiki/assets/foundation/foundation.joyride-7cce0075f55d456449419a92671a3874.js"></script>
+<script src="/wiki/assets/foundation/foundation.magellan-dc0647982e238cf1db3113e50d1b85dd.js"></script>
+<script src="/wiki/assets/foundation/foundation.offcanvas-61dc0fe57ed932800c4a09b92c1ba4e5.js"></script>
+<script src="/wiki/assets/foundation/foundation.orbit-9698da4fd068f7b83b3e5c00aae63ab3.js"></script>
+<script src="/wiki/assets/foundation/foundation.reveal-4944447a204c398659229cfd716786a1.js"></script>
+<script src="/wiki/assets/foundation/foundation.slider-7ea4b29f663e7e1b52ddc9f7ca0458b3.js"></script>
+<script src="/wiki/assets/foundation/foundation.tab-c2efa8f5f8b255b06db277c3f339a0c7.js"></script>
+<script src="/wiki/assets/foundation/foundation.tooltip-4a5d212b8f811ff50bba6cc61a2b899a.js"></script>
+<script src="/wiki/assets/foundation/foundation.topbar-4dd840d30430ff2146208830574ca615.js"></script>
+
+<script src="/wiki/assets/jquery.cookie-61d99d4505fb2f5359bf351153c83f1d.js"></script>
+<!-- Script pointing to jekyll-search.js -->
+<script src="/wiki/assets/jekyll-search-2c27791d765f338cd196c9aa9a050936.js"></script>
+
+<script>
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: "/wiki/search.json"
+    });
+
+    $(document).foundation();
+
+</script>
+
+<!-- prism.js -->
+<script src="/wiki/assets/prism-1eea551ba45e704ef55167430bb80ce4.js"></script>
+</body>
+</html>

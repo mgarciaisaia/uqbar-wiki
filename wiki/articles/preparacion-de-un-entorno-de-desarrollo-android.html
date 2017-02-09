@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<html class="no-js" lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+
+
+  <title>Preparacion de un entorno de desarrollo android</title>
+  <meta property="og:title" content="Preparacion de un entorno de desarrollo android" />
+
+
+
+
+
+
+<link rel="canonical" href="uqbar-project.github.io/wiki/articles/preparacion-de-un-entorno-de-desarrollo-android.html" />
+<meta property="og:url" content="uqbar-project.github.io/wiki/articles/preparacion-de-un-entorno-de-desarrollo-android.html" />
+<meta property="og:site_name" content="uqbar-wiki" />
+<meta name="application-name" content="uqbar-wiki"/>
+
+<meta property="og:updated_time" content=" 2017-02-09T11:53:29-03:00" />
+
+
+
+
+
+
+  <meta property="keywords" content="" />
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/wiki/favicon.ico" >
+    <link type="text/plain" rel="author" href="/wiki/humans.txt"/>
+
+    <link rel="stylesheet" href="/wiki/assets/app-ce8dd519ee762abf28c16f11faacee90.css">
+    <style>
+        .navbar {
+            -webkit-backface-visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <div id="pagetitle"><a href="/wiki/">uqbar-wiki</a></div>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <div class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class="has-dropdown">
+                <a href="#">Help</a>
+                <ul class="dropdown">
+                    <li><a class="link article_link" href="/wiki/wiki/articles/Frequently-Asked-Questions.html">Frequently Asked Questions</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/como-empezar.html">como-empezar</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li class="has-dropdown">
+                <a href="#">Navigation</a>
+                <ul class="dropdown">
+                    <li><a class="link article_link" href="/wiki/wiki/articles/paradigma-de-programacion.html">paradigma de programacion</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/design-temario.html">design temario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/tecnicas-avanzadas-de-programacion.html">tecnicas avanzadas de programacion</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/programacion-de-interfaces-de-usuario.html">programacion de interfaces de usuario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/algo3-temario.html">algo3 temario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/programacion-con-herramientas-modernas.html">programacion con herramientas modernas</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+<div class="column small-0 medium-2 large-2 sidebar" style="margin-top: 10px;">
+    <div class="rows">
+        <img src="/wiki/img/uqbar_logo.png">
+    </div>
+
+    <ul class="rows small-12 medium-10 large-10 side-nav stack button-group" title="Link List" role="menu">
+        <li class="button" role="menuitem"><a href="/wiki/">Home</a></li>
+        <li class="button" role="menuitem"><a href="/wiki/articles">Lista de articulos</a></li>
+    </ul>
+</div>
+
+<div class="column small-12 medium-10 large-10">
+    <div id="article_title">
+    <h1>
+        Preparacion de un entorno de desarrollo android
+    </h1>
+</div>
+
+<div id="article_content">
+    <h2 id="download-e-instalación-base">Download e instalación base</h2>
+
+<p>La instalación que nosotros recomendamos es la siguiente:</p>
+
+<ul>
+  <li><strong>Android SDK</strong>
+    <ul>
+      <li>URL de descarga: <a href="https://developer.android.com/sdk/index.html?hl=i">https://developer.android.com/sdk/index.html?hl=i</a></li>
+      <li>Pasos de instalación: GET THE SDK FOR AN EXISTING IDE &gt; Download the standalone SDK for … sistema operativo que tenés … &gt; Descomprimirlo a una carpeta ($Android_SDK_Path)</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Android Studio</strong>
+    <ul>
+      <li><a href="https://developer.android.com/sdk/index.html">https://developer.android.com/sdk/index.html</a> (descargar última versión que a Octubre 2016 es Nougat - la 24)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="importante-configuraciones">Importante: Configuraciones</h3>
+
+<p>Las configuraciones que te recomendamos son:</p>
+
+<ul>
+  <li>Si estás familiarizado con los shortcuts del Eclipse: File &gt; Settings &gt; Keymap y en el combo Keymaps seleccionar Eclipse</li>
+  <li>Para bajarte los ejemplos o bien usás la opción “Check out project from Version Control” y escribís la dirección de los ejemplos, o bien descargás el repositorio Git como un zip y lo descomprimís aparte, para luego hacer Import Project.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Luego reapuntar el SDK al directorio donde se instaló: Tools &gt; Android &gt; SDK Manager: ubican ese directorio Android SDK Location (el que estuvo en el paso $Android_SDK_Path). Además deben tener instalada alguna API (API Level xx, Revision x, Status: deben marcarla y luego seleccionar Apply). Una vez instalado reiniciar.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Para hacer las pruebas tienen dos opciones: utilizar un dispositivo Android conectado a USB o bien configurar un emulador mediante el Android Virtual Device (AVD). El AVD Manager aparece desde el menú Tools &gt; Android &gt; AVD Manager. Les dejamos una opción posible:
+    <ul>
+      <li>AVD Name: El nombre que quieran</li>
+      <li>Device: Nexus 5 4.95” 1080x1920 420dpi</li>
+      <li>Nougat: Android 7.0 x86_64</li>
+      <li>Scale: Auto</li>
+      <li>Emulated Performance: Use Host GPU chequeado, Store a snapshot for faster startup deschequeado</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Igualmente pueden configurar cualquier otro dispositivo (Phone o Tablet recomendado, no Wear porque tiene características muy diferentes)</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="could-not-find-sdk-folder">“could not find SDK folder”</h3>
+
+<p>Implica que no están apuntando al SDK que instalaron o bien que no instalaron el Android SDK. Solución: Tools &gt; Android &gt; SDK Manager, filtran por Android y marcan el SDK Location que corresponda.</p>
+
+<h3 id="no-se-puede-ejecutar-una-app-no-devices">No se puede ejecutar una app: “no devices”</h3>
+
+<p>Si al correr ven un mensaje de error que indica que no tienen devices, deben configurar un dispositivo para correr la aplicación Android (Android Virtual Device Manager del menú Window) o bien utilizar un dispositivo real conectado a USB.</p>
+
+<h3 id="no-system-images-installed-for-this-target">“NO System images installed for this target”</h3>
+
+<p>Si aparece ese error cuando quieren configurar un device y no les habilita el botón Ok, esto implica que falta descargar del Android SDK Manager las VM (imágenes) de los dispositivos que quieren emular. <a href="http://stackoverflow.com/questions/22541681/fail-to-create-android-virtual-device-no-system-image-installed-for-this-targe">http://stackoverflow.com/questions/22541681/fail-to-create-android-virtual-device-no-system-image-installed-for-this-targe</a> Vayan entonces al Android SDK Manager y fíjense qué packages hay disponibles para instalar según la versión de Android que están ejecutando.</p>
+
+<h3 id="you-cant-combine-swipe-dismissal-with-actionbar-1">You can’t combine swipe dismissal with ActionBar #1</h3>
+
+<p>Si al correr la aplicación aparece en el LogCat ese siguiente mensaje revisar si el device es Android Wear, porque no es compatible con los ejemplos.</p>
+
+<h3 id="se-cuelga-el-android-sdk-content-manager-cuando-levanta-el-eclipse-0">Se cuelga el Android SDK Content Manager cuando levanta el Eclipse (0%)</h3>
+
+<p><a href="http://stackoverflow.com/questions/13489141/eclipse-hangs-at-the-android-sdk-content-loader">http://stackoverflow.com/questions/13489141/eclipse-hangs-at-the-android-sdk-content-loader</a></p>
+
+<p>Si se cuelga el Android SDK Content Manager, cerrar el Eclipse asegurándose de que no quedó ningún proceso levantado. Luego ingresar al %USER PROFILE%, ingresar a la carpeta .android y borrar</p>
+
+<ul>
+  <li>el directorio cache</li>
+  <li>y el archivo ddms.cfg</li>
+</ul>
+
+<p>Luego iniciar el Eclipse normalmente.</p>
+
+<h3 id="no-veo-la-librería-de-android-en-mi-proyecto">No veo la librería de Android en mi proyecto</h3>
+
+<p>Si no aparece la librería de Android, botón derecho sobre el proyecto</p>
+
+<ul>
+  <li>en la solapa Android elegir un target (por ejemplo Android 4.4W)</li>
+  <li>y luego agregar la librería Android Classpath Container en el build path (Build path &gt; solapa Libraries &gt; Add… Android Classpath Container)</li>
+</ul>
+
+<h2 id="cómo-empezar">Cómo empezar</h2>
+
+<ul>
+  <li><a href="http://developer.android.com/index.html">http://developer.android.com/index.html</a></li>
+  <li><a href="http://www.vogella.com/android.html">http://www.vogella.com/android.html</a></li>
+  <li>Un <a href="http://www.youtube.com/watch?v=zS1frzHbKWY">tutorial</a> de youtube que va bien tranquilo</li>
+</ul>
+
+<h3 id="material-de-android-en-xtend">Material de Android en Xtend</h3>
+
+<ul>
+  <li><a href="http://blog.efftinge.de/2011/12/writing-android-uis-with-xtend.html">http://blog.efftinge.de/2011/12/writing-android-uis-with-xtend.html</a></li>
+  <li><a href="http://nataliaossipova.wordpress.com/2013/03/10/xtending-android-development/">http://nataliaossipova.wordpress.com/2013/03/10/xtending-android-development/</a></li>
+</ul>
+
+<h3 id="herramientas-de-desarrollo">Herramientas de desarrollo</h3>
+
+<ul>
+  <li><a href="herramientas-de-desarrollo-con-android.html">Herramientas de desarrollo con Android</a></li>
+</ul>
+
+
+</div>
+
+<div id="article_metadata">
+    <p>Latest update on February 02, 2017 by
+        Ernesto Bossi</p>
+
+    <ul class="accordion" data-accordion>
+        <li class="accordion-navigation">
+            <a href="#panel1a">Page History, Meta information</a>
+
+            <div id="panel1a" class="content">
+
+                <div class="rows">
+                    <div class="column small-12 medium-6 large-6">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Page Commits</th>
+                                <th>Page Additions</th>
+                                <th>Page Deletions</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>94</td>
+                                <td>0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="column small-12 medium-6 large-6">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Commits</th>
+                            <tr>
+                            </thead>
+
+                            <tbody>
+                            
+                            <tr>
+                                <td>Ernesto Bossi</td>
+                                <td>bossi.e...</td>
+                                <td>1</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Npasserini</td>
+                                <td>Npasser...</td>
+                                <td>1</td>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <table style="margin-left: 15px;">
+                    <thead>
+                    <tr>
+                        <th>Hash</th>
+                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Mail</th>
+                        <th>Subject</th>
+                    <tr>
+                    </thead>
+
+                    <tbody>
+                    
+                    <tr>
+                        <td>bef5aba</td>
+                        <td>Thu Feb 2 19:24:04 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>build up initial migration with old commits</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>299a477</td>
+                        <td>Thu Feb 2 19:14:20 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>/* ¿Por qué entonces dice unexpected `;', si yo no puse ningún ";"? */</td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+
+</div>
+
+
+<div id="footer">
+    <div class="columns small-1 medium-2 large-3">
+        <small>(C) 2015-17 Matthias Beyer/Ernesto Bossi</small>
+    </div>
+
+    <div class="columns small-11 medium-10 large-9">
+    </div>
+
+</div>
+
+<script>
+    'use strict';
+</script>
+
+<script src="/wiki/assets/jquery-9954088f87089c387789507249fa70d3.js"></script>
+<script src="/wiki/assets/jquery.min-650c8b3af3d010ec559014c6e70b13c3.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="/wiki/assets/foundation/foundation-8e0f071884576348dba555b27a4bcaa9.js"></script>
+<script src="/wiki/assets/foundation/foundation.abide-fa5ce9fbf8301ae49154ebc752edc220.js"></script>
+<script src="/wiki/assets/foundation/foundation.accordion-bcc423fb0c2a3d515ba85ff591171a8e.js"></script>
+<script src="/wiki/assets/foundation/foundation.alert-609b779b55610f4916250faaa37d1cfc.js"></script>
+<script src="/wiki/assets/foundation/foundation.clearing-167db0285c7a789f7f216183f9038ac4.js"></script>
+<script src="/wiki/assets/foundation/foundation.dropdown-25aac997ca0ca5dc3c3094c266c8f5aa.js"></script>
+<script src="/wiki/assets/foundation/foundation.equalizer-cbdd8079a6f777c37dd1314f9b17faec.js"></script>
+<script src="/wiki/assets/foundation/foundation.interchange-6ef75863aff8abeff4de79554b62e1b9.js"></script>
+<script src="/wiki/assets/foundation/foundation.joyride-7cce0075f55d456449419a92671a3874.js"></script>
+<script src="/wiki/assets/foundation/foundation.magellan-dc0647982e238cf1db3113e50d1b85dd.js"></script>
+<script src="/wiki/assets/foundation/foundation.offcanvas-61dc0fe57ed932800c4a09b92c1ba4e5.js"></script>
+<script src="/wiki/assets/foundation/foundation.orbit-9698da4fd068f7b83b3e5c00aae63ab3.js"></script>
+<script src="/wiki/assets/foundation/foundation.reveal-4944447a204c398659229cfd716786a1.js"></script>
+<script src="/wiki/assets/foundation/foundation.slider-7ea4b29f663e7e1b52ddc9f7ca0458b3.js"></script>
+<script src="/wiki/assets/foundation/foundation.tab-c2efa8f5f8b255b06db277c3f339a0c7.js"></script>
+<script src="/wiki/assets/foundation/foundation.tooltip-4a5d212b8f811ff50bba6cc61a2b899a.js"></script>
+<script src="/wiki/assets/foundation/foundation.topbar-4dd840d30430ff2146208830574ca615.js"></script>
+
+<script src="/wiki/assets/jquery.cookie-61d99d4505fb2f5359bf351153c83f1d.js"></script>
+<!-- Script pointing to jekyll-search.js -->
+<script src="/wiki/assets/jekyll-search-2c27791d765f338cd196c9aa9a050936.js"></script>
+
+<script>
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: "/wiki/search.json"
+    });
+
+    $(document).foundation();
+
+</script>
+
+<!-- prism.js -->
+<script src="/wiki/assets/prism-1eea551ba45e704ef55167430bb80ce4.js"></script>
+</body>
+</html>

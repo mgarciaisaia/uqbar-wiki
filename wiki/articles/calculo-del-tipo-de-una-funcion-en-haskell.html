@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" prefix="og: http://ogp.me/ns#"> <![endif]-->
+<html class="no-js" lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+
+
+  <title>Calculo del tipo de una funcion en haskell</title>
+  <meta property="og:title" content="Calculo del tipo de una funcion en haskell" />
+
+
+
+
+
+
+<link rel="canonical" href="uqbar-project.github.io/wiki/articles/calculo-del-tipo-de-una-funcion-en-haskell.html" />
+<meta property="og:url" content="uqbar-project.github.io/wiki/articles/calculo-del-tipo-de-una-funcion-en-haskell.html" />
+<meta property="og:site_name" content="uqbar-wiki" />
+<meta name="application-name" content="uqbar-wiki"/>
+
+<meta property="og:updated_time" content=" 2017-02-09T11:53:29-03:00" />
+
+
+
+
+
+
+  <meta property="keywords" content="" />
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/wiki/favicon.ico" >
+    <link type="text/plain" rel="author" href="/wiki/humans.txt"/>
+
+    <link rel="stylesheet" href="/wiki/assets/app-ce8dd519ee762abf28c16f11faacee90.css">
+    <style>
+        .navbar {
+            -webkit-backface-visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <div id="pagetitle"><a href="/wiki/">uqbar-wiki</a></div>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <div class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class="has-dropdown">
+                <a href="#">Help</a>
+                <ul class="dropdown">
+                    <li><a class="link article_link" href="/wiki/wiki/articles/Frequently-Asked-Questions.html">Frequently Asked Questions</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/como-empezar.html">como-empezar</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li class="has-dropdown">
+                <a href="#">Navigation</a>
+                <ul class="dropdown">
+                    <li><a class="link article_link" href="/wiki/wiki/articles/paradigma-de-programacion.html">paradigma de programacion</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/design-temario.html">design temario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/tecnicas-avanzadas-de-programacion.html">tecnicas avanzadas de programacion</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/programacion-de-interfaces-de-usuario.html">programacion de interfaces de usuario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/algo3-temario.html">algo3 temario</a></li>
+                    <li><a class="link article_link" href="/wiki/wiki/articles/programacion-con-herramientas-modernas.html">programacion con herramientas modernas</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+<div class="column small-0 medium-2 large-2 sidebar" style="margin-top: 10px;">
+    <div class="rows">
+        <img src="/wiki/img/uqbar_logo.png">
+    </div>
+
+    <ul class="rows small-12 medium-10 large-10 side-nav stack button-group" title="Link List" role="menu">
+        <li class="button" role="menuitem"><a href="/wiki/">Home</a></li>
+        <li class="button" role="menuitem"><a href="/wiki/articles">Lista de articulos</a></li>
+    </ul>
+</div>
+
+<div class="column small-12 medium-10 large-10">
+    <div id="article_title">
+    <h1>
+        Calculo del tipo de una funcion en haskell
+    </h1>
+</div>
+
+<div id="article_content">
+    <p>Dado que el haskell es un lenguaje con <a href="inferencia-de-tipos.html">Inferencia de tipos</a>, no es necesario indicar el tipo de las funciones que construimos. A pesar de ello (o tal vez precisamente <em>por</em> ello) los tipos juegan un rol fundamental al programar en un lenguaje funcional (en particular en Haskell).</p>
+
+<p>Esto se debe a varios motivos:</p>
+
+<p>El sistema de tipos<br />
+El sistema de tipos de Haskell es muy estricto, bastante más de lo que estamos acostumbrados los que venimos de la programación orientada a objetos. Eso muchas veces puede ser bueno porque nos ayuda a detectar errores más tempranamente (por ejemplo no es posible hacer casteos en Haskell).</p>
+
+<p>En otros casos puede ser molesto porque el tipado tan estricto complica algunas operaciones sencillas.</p>
+
+<p>Ambas situaciones obligan al programador a ser más atento con los tipos de cada una de las funciones que programa o que utiliza.</p>
+
+<!-- -->
+
+<p>La construcción de funciones a partir de funciones<br />
+El paradigma funcional tiene como uno de sus pilares la posibilidad de construir funciones complejas a partir de combinar funciones más simples (utilizando composición, aplicación parcial, orden superior, etc); para poder utilizar cualquiera de esas herramientas es necesario tener presente el tipo de las funciones que quiero combinar, por ejemplo:</p>
+
+<ul>
+  <li>Si quiero componer dos funciones: es necesario que la imagen de f esté incluida en el dominio de g (tal como aprendimos en matemática).</li>
+  <li>Al aplicar una función de orden superior es necesario que <em>matcheen</em> los tipos de ambas funciones.</li>
+</ul>
+
+<!-- -->
+
+<p>El polimorfismo paramétrico y las type classes<br />
+Una función que tiene un tipo genérico al ser aplicada puede reducir su tipo, eso también es algo a tener en cuenta. Por ejemplo la función puede en principio procesar cualquier tipo; en cambio una vez que yo le aplico el primer parámetro (el criterio de selección) ese tipo se restringe, la función sólo va a servir para listas de valores numéricos: combinar filter con even restringe el tipo de ambas.</p>
+
+<p>A continuación se describen paso a paso los ejemplos que permiten comprender el mecanismo de inferencia utilizado en el lenguaje Haskell.</p>
+
+<h2 id="antes-de-empezar-cómo-leer-el-tipo-de-una-función-en-haskell">Antes de empezar: cómo leer el tipo de una función en Haskell</h2>
+
+<p>Antes de poder evaluar el tipo de una hay que comprender cuáles son los tipos posibles de Haskell, eso está explicado en el artículo sobre <a href="tipos-de-haskell.html">Tipos de Haskell</a></p>
+
+<h2 id="aplicación">Aplicación</h2>
+
+<p>si x es Bool, entonces  también es de tipo Bool</p>
+
+<h2 id="funciones-simples">Funciones Simples</h2>
+
+<p>Al intentar calcular el tipo de una función, lo primero que tenemos que hacer es mirar las funciones que se usan dentro de su definición. Por ejemplo:</p>
+
+<p><code class="highlighter-rouge">none x y = not x &amp;&amp; not y</code></p>
+
+<p>Para determinar el tipo de la función none podemos seguir los siguientes pasos:</p>
+
+<ol>
+  <li>Sabemos que tiene dos parámetros (x e y), entonces podemos decir que su tipo tiene que tener la forma , luego deberemos calcular cuáles son a, b y c.</li>
+  <li>Si x es utilizado como parámetro de la función , entonces su tipo deberá ser compatible con el de not. El tipo de not es: ; es decir: recibe un booleano y devuelve otro booleano. Por lo tanto x deberá ser un booleano.</li>
+  <li>Un razonamiento análogo nos lleva a deducir que y también debe ser un valor booleano. Entonces sabemos que el tipo de la función tiene la forma , es decir: recibe dos Booleanos y nos falta saber qué devuelve.</li>
+  <li>Finalmente, para saber el tipo de retorno podemos mirar que si x es Bool, entonces también es de tipo Bool, al igual que . Por otro lado la función tiene el tipo (recibe dos booleanos y devuelve también un booleano), entonces el valor de retorno también es un booleano.</li>
+</ol>
+
+<p>En el último paso podemos ver que en realidad para saber el tipo de no sería necesario mirar los parámetros de , con saber su tipo de retorno sería suficiente. Sin embargo el análisis es útil para asegurarnos de que la función es correcta.</p>
+
+<p>Por otro lado, en ejemplos más complejos analizar los parámetros será indispensable para poder saber el tipo de retorno (por ejemplo en la presencia de polimorfismo).</p>
+
+<h2 id="ejemplo-un-poco-mas-heavy">Ejemplo un poco mas heavy</h2>
+
+<p>Siendo</p>
+
+<p><strong><code class="highlighter-rouge">f</code> <code class="highlighter-rouge">x</code> <code class="highlighter-rouge">y</code> <code class="highlighter-rouge">z</code> <code class="highlighter-rouge">=</code> <code class="highlighter-rouge">(head</code> <code class="highlighter-rouge">y)</code> <code class="highlighter-rouge">&gt;</code> <code class="highlighter-rouge">(map</code> <code class="highlighter-rouge">(\n</code> <code class="highlighter-rouge">-&gt;</code> <code class="highlighter-rouge">n</code> <code class="highlighter-rouge">x)</code> <code class="highlighter-rouge">z)</code></strong></p>
+
+<p>Vamos a intentar hacer la inferencia de tipos</p>
+
+<p><strong>Por donde empezamos?</strong></p>
+
+<p>Primero tenemos que ver qué es <strong>f</strong> ? f es una función que tiene 3 parámetros</p>
+
+<p>Ponemos 3 flechitas -&gt;</p>
+
+<p><code class="highlighter-rouge">f :: esto es el tipo de </code><strong><code class="highlighter-rouge">x</code></strong><code class="highlighter-rouge"> -&gt; esto es el tipo de </code><strong><code class="highlighter-rouge">y</code></strong><code class="highlighter-rouge"> -&gt; esto es el tipo de </code><strong><code class="highlighter-rouge">z</code></strong><code class="highlighter-rouge"> -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>Como head se aplica a una lista <strong>y</strong> tiene que ser una lista</p>
+
+<p><code class="highlighter-rouge">f :: esto es el tipo de </code><strong><code class="highlighter-rouge">x</code></strong><code class="highlighter-rouge"> -&gt; [???] -&gt; esto es el tipo de </code><strong><code class="highlighter-rouge">z</code></strong><code class="highlighter-rouge"> -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>Como map recibe como segundo parámetro una lista, <strong>z</strong> tiene q ser una lista</p>
+
+<p><code class="highlighter-rouge">f :: esto es el tipo de </code><strong><code class="highlighter-rouge">x</code></strong><code class="highlighter-rouge"> -&gt; [???] -&gt; [???] -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>La función que es primer parámetro del map <strong>(\n -&gt; n x)</strong> recibe como parámetro cada elemento de la lista <strong>z</strong>, cada uno de esos elementos va a ser <strong>n</strong></p>
+
+<p>Como <strong>n</strong> se está aplicando a <strong>x</strong> podemos inferir que <strong>n</strong> es una función, por lo que <strong>z</strong> es una lista de funciones</p>
+
+<p><code class="highlighter-rouge">f :: esto es el tipo de </code><strong><code class="highlighter-rouge">x</code></strong><code class="highlighter-rouge"> -&gt; [???] -&gt; </code><strong><code class="highlighter-rouge">[Dominio</code> <code class="highlighter-rouge">-&gt;</code> <code class="highlighter-rouge">Imagen]</code></strong><code class="highlighter-rouge"> -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>Como <strong>x</strong> es el parámetro de <strong>n</strong> podemos inferir que <strong>x</strong> pertenece al dominio de <strong>n</strong>, por ende si el <strong>Dominio</strong> es de tipo <strong>a</strong> entonces <strong>x</strong> es de tipo <strong>a</strong></p>
+
+<p><code class="highlighter-rouge">f :: </code><strong><code class="highlighter-rouge">a</code></strong><code class="highlighter-rouge"> -&gt; [???] -&gt; [</code><strong><code class="highlighter-rouge">a</code></strong><code class="highlighter-rouge"> -&gt; Imagen] -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>Respiremos profundo… Asumimos que Imagen es de tipo <strong>b</strong></p>
+
+<p><code class="highlighter-rouge">f :: a -&gt; [???] -&gt; [a -&gt; </code><strong><code class="highlighter-rouge">b</code></strong><code class="highlighter-rouge">] -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>Ahora pensemos en los parámetros de la función <strong>(&gt;)</strong> que son <strong>(head y)</strong> y <strong>(map (\n -&gt; n x) z)</strong></p>
+
+<p>Para poder comparar estas 2 cosas ambos tienen que ser del mismo tipo</p>
+
+<p>El map me da una lista de lo que devuelve (\n -&gt; n x) sabemos que la imagen de (\n -&gt; n x) es b entonces <strong>(map (\n -&gt; n x) z)</strong> es de tipo <strong>[b]</strong></p>
+
+<p>Por ende <strong>(head y)</strong> también es de tipo <strong>[b]</strong></p>
+
+<p>Para que <strong>(head y)</strong> sea de tipo <strong>[b]</strong> <strong>y</strong> tiene que tener el tipo [ <strong>[ b ]</strong> ]</p>
+
+<p><code class="highlighter-rouge">f :: a -&gt; [ </code><strong><code class="highlighter-rouge">[</code> <code class="highlighter-rouge">b</code> <code class="highlighter-rouge">]</code></strong><code class="highlighter-rouge"> ] -&gt; [a -&gt; b] -&gt; esto es el tipo de lo que devuelve </code><strong><code class="highlighter-rouge">f</code></strong></p>
+
+<p>La última función que se hace en <strong>f</strong> es <strong>(&gt;)</strong>, como la imagen de <strong>(&gt;)</strong> es <strong>Bool</strong> la imagen de <strong>f</strong> es <strong>Bool</strong></p>
+
+<p><code class="highlighter-rouge">f :: a -&gt; [ [ b ] ] -&gt; [a -&gt; b] -&gt; </code><strong><code class="highlighter-rouge">Bool</code></strong></p>
+
+<p>Nos queda un pequeño detalle, el <strong>(&gt;)</strong> solo puede laburar con listas ordenables entonces <strong>[b]</strong> no puede ser cualquier lista, sus elementos tienen que tener la restricción <strong>Ord</strong></p>
+
+<p><code class="highlighter-rouge">f :: </code><strong><code class="highlighter-rouge">Ord</code> <code class="highlighter-rouge">b</code></strong><code class="highlighter-rouge"> =&gt; a -&gt; [ [ b ] ] -&gt; [a -&gt; b] -&gt; Bool</code></p>
+
+<h3 id="ejemplo-de-parcial-para-pensar">Ejemplo de parcial para pensar</h3>
+
+<p>Tenemos esta función:</p>
+
+<p><code class="highlighter-rouge">f a b c d = maximoSegun (c d).filter (== snd a).map b</code></p>
+
+<p>Y sabemos que:</p>
+
+<p><code class="highlighter-rouge">*Main&gt; :t maximoSegun</code>
+<code class="highlighter-rouge">maximoSegun :: Ord a1 =&gt; (a -&gt; a1) -&gt; [a] -&gt; a</code></p>
+
+<p>Cuál es el tipo de f? Ayudita: nótese que al map se le está aplicando sólo un parámetro ;)</p>
+
+</div>
+
+<div id="article_metadata">
+    <p>Latest update on February 02, 2017 by
+        Ernesto Bossi</p>
+
+    <ul class="accordion" data-accordion>
+        <li class="accordion-navigation">
+            <a href="#panel1a">Page History, Meta information</a>
+
+            <div id="panel1a" class="content">
+
+                <div class="rows">
+                    <div class="column small-12 medium-6 large-6">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Page Commits</th>
+                                <th>Page Additions</th>
+                                <th>Page Deletions</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>3</td>
+                                <td>131</td>
+                                <td>1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="column small-12 medium-6 large-6">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Commits</th>
+                            <tr>
+                            </thead>
+
+                            <tbody>
+                            
+                            <tr>
+                                <td>Ernesto Bossi</td>
+                                <td>bossi.e...</td>
+                                <td>2</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Npasserini</td>
+                                <td>Npasser...</td>
+                                <td>1</td>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <table style="margin-left: 15px;">
+                    <thead>
+                    <tr>
+                        <th>Hash</th>
+                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Mail</th>
+                        <th>Subject</th>
+                    <tr>
+                    </thead>
+
+                    <tbody>
+                    
+                    <tr>
+                        <td>719f9fd</td>
+                        <td>Thu Feb 2 19:32:02 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>wiki pages quickfixes</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>bef5aba</td>
+                        <td>Thu Feb 2 19:24:04 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>build up initial migration with old commits</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>299a477</td>
+                        <td>Thu Feb 2 19:14:20 2017 -0300</td>
+                        <td>Ernesto Bossi</td>
+                        <td>bossi.e...</td>
+                        <td>/* ¿Por qué entonces dice unexpected `;', si yo no puse ningún ";"? */</td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+
+</div>
+
+
+<div id="footer">
+    <div class="columns small-1 medium-2 large-3">
+        <small>(C) 2015-17 Matthias Beyer/Ernesto Bossi</small>
+    </div>
+
+    <div class="columns small-11 medium-10 large-9">
+    </div>
+
+</div>
+
+<script>
+    'use strict';
+</script>
+
+<script src="/wiki/assets/jquery-9954088f87089c387789507249fa70d3.js"></script>
+<script src="/wiki/assets/jquery.min-650c8b3af3d010ec559014c6e70b13c3.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="/wiki/assets/foundation/foundation-8e0f071884576348dba555b27a4bcaa9.js"></script>
+<script src="/wiki/assets/foundation/foundation.abide-fa5ce9fbf8301ae49154ebc752edc220.js"></script>
+<script src="/wiki/assets/foundation/foundation.accordion-bcc423fb0c2a3d515ba85ff591171a8e.js"></script>
+<script src="/wiki/assets/foundation/foundation.alert-609b779b55610f4916250faaa37d1cfc.js"></script>
+<script src="/wiki/assets/foundation/foundation.clearing-167db0285c7a789f7f216183f9038ac4.js"></script>
+<script src="/wiki/assets/foundation/foundation.dropdown-25aac997ca0ca5dc3c3094c266c8f5aa.js"></script>
+<script src="/wiki/assets/foundation/foundation.equalizer-cbdd8079a6f777c37dd1314f9b17faec.js"></script>
+<script src="/wiki/assets/foundation/foundation.interchange-6ef75863aff8abeff4de79554b62e1b9.js"></script>
+<script src="/wiki/assets/foundation/foundation.joyride-7cce0075f55d456449419a92671a3874.js"></script>
+<script src="/wiki/assets/foundation/foundation.magellan-dc0647982e238cf1db3113e50d1b85dd.js"></script>
+<script src="/wiki/assets/foundation/foundation.offcanvas-61dc0fe57ed932800c4a09b92c1ba4e5.js"></script>
+<script src="/wiki/assets/foundation/foundation.orbit-9698da4fd068f7b83b3e5c00aae63ab3.js"></script>
+<script src="/wiki/assets/foundation/foundation.reveal-4944447a204c398659229cfd716786a1.js"></script>
+<script src="/wiki/assets/foundation/foundation.slider-7ea4b29f663e7e1b52ddc9f7ca0458b3.js"></script>
+<script src="/wiki/assets/foundation/foundation.tab-c2efa8f5f8b255b06db277c3f339a0c7.js"></script>
+<script src="/wiki/assets/foundation/foundation.tooltip-4a5d212b8f811ff50bba6cc61a2b899a.js"></script>
+<script src="/wiki/assets/foundation/foundation.topbar-4dd840d30430ff2146208830574ca615.js"></script>
+
+<script src="/wiki/assets/jquery.cookie-61d99d4505fb2f5359bf351153c83f1d.js"></script>
+<!-- Script pointing to jekyll-search.js -->
+<script src="/wiki/assets/jekyll-search-2c27791d765f338cd196c9aa9a050936.js"></script>
+
+<script>
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: "/wiki/search.json"
+    });
+
+    $(document).foundation();
+
+</script>
+
+<!-- prism.js -->
+<script src="/wiki/assets/prism-1eea551ba45e704ef55167430bb80ce4.js"></script>
+</body>
+</html>
